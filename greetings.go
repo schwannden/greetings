@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Hello function greet a person
 func Hello(name string) (string, error) {
 	// check if no name was given
 	if name == "" {
@@ -16,6 +17,19 @@ func Hello(name string) (string, error) {
 	// return the greeting to entered name
 	message := fmt.Sprintf(randomFormat(), name)
 	return message, nil
+}
+
+// Hellos function greets people
+func Hellos(names []string) (map[string]string, error) {
+	messages := make(map[string]string)
+	for _, name := range names {
+		message, error := Hello(name)
+		if error != nil {
+			return nil, error
+		}
+		messages[name] = message
+	}
+	return messages, nil
 }
 
 // init sets initial values for variables used in the function.
